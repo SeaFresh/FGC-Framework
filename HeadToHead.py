@@ -8,8 +8,8 @@ if __name__ == '__main__':
                         help='Start GG API token')
     parser.add_argument('--slug', required=False,
                         help='Slug of tournament path')
-    parser.add_argument('--game', choices=['GGST', 'SF6'], required=True,
-                        help='Game to look for in query results. Either GGST or SF6.')
+    parser.add_argument('--game', required=True, choices=list(StartGGClient.dropdown_games.keys()),
+                        help='Game to look for in query results.')
     parser.add_argument('--player-ids',  nargs='+', required=False)
     
     args = parser.parse_args()
