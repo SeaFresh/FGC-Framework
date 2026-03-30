@@ -6,7 +6,7 @@ from time import sleep
 import csv
 from gooey import Gooey
 
-@Gooey
+@Gooey(encoding='UTF-8')
 def main():
     parser = argparse.ArgumentParser(prog='AutoSeeder.py',
                                      description=(

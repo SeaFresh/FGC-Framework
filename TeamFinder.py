@@ -3,7 +3,7 @@ import argparse
 from StartGGClient import StartGGClient
 from gooey import Gooey
 
-@Gooey
+@Gooey(encoding='UTF-8')
 def main():
     parser = argparse.ArgumentParser(prog='TeamFinder.py')
     parser.add_argument('--token', required=True,

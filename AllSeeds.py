@@ -4,7 +4,7 @@ from gooey import Gooey
 
 from StartGGClient import StartGGClient
 
-@Gooey
+@Gooey(encoding='UTF-8')
 def main():
     parser = argparse.ArgumentParser(prog='AllSeeds.py',
                                      description='Retrieves all seeds for an event in order.')

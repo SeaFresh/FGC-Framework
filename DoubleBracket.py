@@ -5,7 +5,7 @@ from time import sleep
 from datetime import datetime, timedelta
 from gooey import Gooey
 
-@Gooey
+@Gooey(encoding='UTF-8')
 def main():
     parser = argparse.ArgumentParser(prog='DoubleBracket.py',
                                      description='Attempts to find double bracketers by seeing if they\'ve entered anything an hour before or after your bracket.')
