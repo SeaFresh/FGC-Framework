@@ -40,8 +40,6 @@ def main():
     else:
         print('Requires slug, input, or players')
 
-    print(record)
-
     seeding = []
 
     for player in record:

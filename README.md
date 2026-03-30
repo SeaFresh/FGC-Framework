@@ -79,7 +79,7 @@ Yet another thing used to pull every set of GGST
 ## Vinny Bot
 
 This is what Vinny, Sollemnitas, and other staff use to make posts in the Tourney Hub discord.
-If you're not in there, you're likely in a discord that subscribes to it.
+It looks for tournaments with events starting in the next week for a particular game and formats them for posting in Discord.
 Communication in this community is a huge deal to me, it's the reason I made a lot of this stuff because it can be very hard to let people know you're running something. So if you'd like me to add things to, or alter this bot so that you can better inform people about events, let me know.
 
 ## Contact Me

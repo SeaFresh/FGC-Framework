@@ -1,6 +1,7 @@
 import argparse
 from datetime import timedelta, datetime
 from StartGGClient import StartGGClient
+from gooey import Gooey
 
 def make_post(auth, game):
     today = datetime.now()
@@ -47,8 +48,10 @@ def make_post(auth, game):
         else:
             slug = tournament['slug']
         print('<https://start.gg/' + slug + '>\n')
+    return
 
-if __name__ == '__main__':
+@Gooey
+def main():
     parser = argparse.ArgumentParser(prog='VinnyBot.py')
     parser.add_argument('--token', required=True,
                         help='Start GG API token')
@@ -58,3 +61,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     make_post(args.token, args.game)
+    return
+
+if __name__ == '__main__':
+    main()
