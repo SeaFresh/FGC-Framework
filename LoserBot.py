@@ -1,6 +1,7 @@
 import argparse
 from datetime import datetime, timedelta
 from gooey import Gooey
+import locale
 
 from StartGGClient import StartGGClient
 

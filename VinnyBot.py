@@ -2,6 +2,7 @@ import argparse
 from datetime import timedelta, datetime
 from StartGGClient import StartGGClient
 from gooey import Gooey
+import locale
 
 def make_post(auth, game):
     today = datetime.now()

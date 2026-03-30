@@ -2,6 +2,7 @@ import argparse
 
 from StartGGClient import StartGGClient
 from gooey import Gooey
+import locale
 
 @Gooey(encoding=locale.getpreferredencoding())
 def main():

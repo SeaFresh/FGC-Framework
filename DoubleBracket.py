@@ -4,6 +4,7 @@ from StartGGClient import StartGGClient
 from time import sleep
 from datetime import datetime, timedelta
 from gooey import Gooey
+import locale
 
 @Gooey(encoding=locale.getpreferredencoding())
 def main():
