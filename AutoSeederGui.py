@@ -3,10 +3,11 @@ import math
 from statistics import mean
 from StartGGClient import StartGGClient
 from time import sleep
-import csv
+import sys
 from gooey import Gooey
+import locale
 
-@Gooey(encoding='UTF-8')
+@Gooey(encoding=locale.getpreferredencoding())
 def main():
     parser = argparse.ArgumentParser(prog='AutoSeeder.py',
                                      description=(

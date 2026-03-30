@@ -4,7 +4,7 @@ from gooey import Gooey
 
 from StartGGClient import StartGGClient
 
-@Gooey(encoding='UTF-8')
+@Gooey(encoding=locale.getpreferredencoding())
 def main():
     parser = argparse.ArgumentParser(prog='LoserBot.py',
                                      description='Checks to see how many sets you\'ve won and who you\'re losing to.')

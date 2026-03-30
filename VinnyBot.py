@@ -50,7 +50,7 @@ def make_post(auth, game):
         print('<https://start.gg/' + slug + '>\n')
     return
 
-@Gooey(encoding='UTF-8')
+@Gooey(encoding=locale.getpreferredencoding())
 def main():
     parser = argparse.ArgumentParser(prog='VinnyBot.py')
     parser.add_argument('--token', required=True,
