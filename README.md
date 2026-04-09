@@ -1,6 +1,6 @@
 # FGC Framework
 
-Hi, I'm CFresh and this is a collection of tools for querying start gg that have been useful to people over the years.
+Hi, I'm CFresh and this is a collection of tools for querying start gg that have been useful to people over the years. I should note that NONE OF THESE TOOLS WILL TAKE ACTIONS FOR YOU ON START GG. All of them strictly pull data and do things with it, so you can run them without fear you'll mess up a bracket.
 
 ## What is an auth token?
 
