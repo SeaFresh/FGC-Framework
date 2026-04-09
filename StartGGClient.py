@@ -1,6 +1,7 @@
 from datetime import datetime, timezone
 import json
 from time import sleep
+from collections import OrderedDict
 
 import requests
 
@@ -34,6 +35,8 @@ class StartGGClient:
 
     dropdown_games = game_ids
     del dropdown_games['UNI2CAPS']
+
+    dropdown_games = OrderedDict(sorted(dropdown_games.items()))
 
     api_url = 'https://api.start.gg/gql/alpha'
 
