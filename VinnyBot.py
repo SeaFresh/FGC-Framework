@@ -2,7 +2,13 @@ import argparse
 from datetime import timedelta, datetime
 from StartGGClient import StartGGClient
 from gooey import Gooey
-import locale
+import codecs
+import sys
+
+if sys.stdout.encoding != 'UTF-8':
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+if sys.stderr.encoding != 'UTF-8':
+    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
 
 def make_post(auth, game):
     today = datetime.now()
@@ -51,7 +57,7 @@ def make_post(auth, game):
         print('<https://start.gg/' + slug + '>\n')
     return
 
-@Gooey(encoding=locale.getpreferredencoding())
+@Gooey()
 def main():
     parser = argparse.ArgumentParser(prog='VinnyBot.py')
     parser.add_argument('--token', required=True,

@@ -4,9 +4,15 @@ from StartGGClient import StartGGClient
 from time import sleep
 from datetime import datetime, timedelta
 from gooey import Gooey
-import locale
+import codecs
+import sys
 
-@Gooey(encoding=locale.getpreferredencoding())
+if sys.stdout.encoding != 'UTF-8':
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+if sys.stderr.encoding != 'UTF-8':
+    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
+
+@Gooey()
 def main():
     parser = argparse.ArgumentParser(prog='DoubleBracket.py',
                                      description='Attempts to find double bracketers by seeing if they\'ve entered anything an hour before or after your bracket.')

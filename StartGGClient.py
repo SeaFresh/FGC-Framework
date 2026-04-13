@@ -270,19 +270,21 @@ class StartGGClient:
         }'''
 
     sets_by_player_query = '''
-        query sets($id: ID!, $setFilters: SetFilters, $page: Int!) {
-            player(id: $id) {
-                sets(page: $page, perPage: 200, filters: $setFilters) {
-                    nodes {
-                        id
-                        displayScore
-                        event {
-                            name
-                            tournament {
+        query sets($slug: String!, $setFilters: SetFilters, $page: Int!) {
+            user(slug: $slug) {
+                player {
+                    sets(page: $page, perPage: 200, filters: $setFilters) {
+                        nodes {
+                            id
+                            displayScore
+                            event {
                                 name
-                            }
-                            videogame {
-                                id
+                                tournament {
+                                    name
+                                }
+                                videogame {
+                                    id
+                                }
                             }
                         }
                     }
@@ -318,11 +320,13 @@ class StartGGClient:
                     }
                 }
                 slots {
-                    entrant {
-                        name,
-                        participants {
-                            player {
-                                id
+                    standing {
+                        placement
+                        entrant {
+                            participants {
+                                player {
+                                    gamerTag
+                                }
                             }
                         }
                     }
@@ -555,19 +559,28 @@ class StartGGClient:
             page = 1
             while page < 100:
                 variables = {
-                    'id': player,
+                    'slug': player,
                     'page': page
                 }
 
                 params = {'query': self.sets_by_player_query,
                         'variables': json.dumps(variables)}
-                
+                        
                 return_dict = self.make_request(params)
-
-                if len(return_dict['data']['player']['sets']['nodes']) == 0:
+                
+                if len(return_dict['data']['user']['player']['sets']['nodes']) == 0:
                     break
 
-                for set in return_dict['data']['player']['sets']['nodes']:
+                working_sets = [] 
+
+                if game:
+                    for set in return_dict['data']['user']['player']['sets']['nodes']:
+                        if set['event']['videogame']['id'] == self.game_ids[game]:
+                            working_sets.append(set)
+                else:
+                    working_sets = return_dict['data']['user']['player']['sets']['nodes']
+
+                for set in working_sets:
                     if set['id'] not in test_set_ids:
                         test_set_ids[set['id']] = 0
                     else:

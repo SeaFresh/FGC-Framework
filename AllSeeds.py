@@ -1,10 +1,16 @@
 import argparse
 import math
 from gooey import Gooey
-
 from StartGGClient import StartGGClient
+import codecs
+import sys
 
-@Gooey(encoding=locale.getpreferredencoding())
+if sys.stdout.encoding != 'UTF-8':
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+if sys.stderr.encoding != 'UTF-8':
+    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
+
+@Gooey()
 def main():
     parser = argparse.ArgumentParser(prog='AllSeeds.py',
                                      description='Retrieves all seeds for an event in order.')
