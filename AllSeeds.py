@@ -2,13 +2,7 @@ import argparse
 import math
 from gooey import Gooey
 from StartGGClient import StartGGClient
-import codecs
-import sys
-
-if sys.stdout.encoding != 'UTF-8':
-    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
-if sys.stderr.encoding != 'UTF-8':
-    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
+import OutputSetup
 
 @Gooey()
 def main():

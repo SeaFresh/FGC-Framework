@@ -2,13 +2,7 @@ import argparse
 from datetime import timedelta, datetime
 from StartGGClient import StartGGClient
 from gooey import Gooey
-import codecs
-import sys
-
-if sys.stdout.encoding != 'UTF-8':
-    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
-if sys.stderr.encoding != 'UTF-8':
-    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
+import OutputSetup
 
 def make_post(auth, game):
     today = datetime.now()
