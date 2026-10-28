@@ -17,13 +17,13 @@ def main():
                         help='Start GG API token')
     parser.add_argument('--game', required=True, choices=list(StartGGClient.dropdown_games.keys()),
                         help='Game to look for in query results.')
-    parser.add_argument('--slug', required=True,
-                        help='Tournament name copied from url e.g. aegis-esports-x-zenmarket-25-na-server-2xko-tournament')
+    parser.add_argument('--event', required=True,
+                        help='Full slug for the event copied from a url e.g. tournament/<tournament_name>/event/<event_name>')
 
     args = parser.parse_args()
 
     start_client = StartGGClient(args.token)
-    record = start_client.query_tournament_user_id(args.game, args.slug)
+    record = start_client.query_event_user_id(args.event)
 
     seeding = []
 

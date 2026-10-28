@@ -12,16 +12,16 @@ def main():
                         help='Start GG API token')
     parser.add_argument('--game', required=True, choices=list(StartGGClient.game_ids.keys()),
                         help='Game to look for in query results.')
-    parser.add_argument('--slug', required=False,
-                        help='')
+    parser.add_argument('--event', required=False,
+                        help='Full slug for the event copied from a url e.g. tournament/<tournament_name>/event/<event_name>')
     parser.add_argument('--input', required=False)
     parser.add_argument('--players', required=False, nargs=2)
 
     args = parser.parse_args()
 
     start_client = StartGGClient(args.token)
-    if args.slug:
-        record = start_client.query_tournament_user_id(args.game, args.slug)
+    if args.event:
+        record = start_client.query_event_user_id(args.event)
     elif args.input:
         record = []
         with open(args.input) as f:
@@ -38,7 +38,7 @@ def main():
         record.append({'gamerTag': list(start_client.query_recent_standings(args.game, args.players[1]))[0],
                        'id': args.players[1]})
     else:
-        print('Requires slug, input, or players')
+        print('Requires event, input, or players')
 
     seeding = []
 

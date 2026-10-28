@@ -30,7 +30,8 @@ class StartGGClient:
     'SSBM': 1,
     'COTW': 73221,
     'TFS': 107706,
-    'BBCF': 37
+    'BBCF': 37,
+    'AVFG': 114292
     }
 
     dropdown_games = game_ids
@@ -66,20 +67,17 @@ class StartGGClient:
             }
         }'''
     
-    tournament_user_id_query = '''
-        query TournamentUserIdQuery($slug: String, $eventFilter: EventFilter, $page: Int) {
-            tournament(slug: $slug) {
+    event_user_id_query = '''
+        query EventStandings($eventSlug: String!, $page: Int!) {
+            event(slug: $eventSlug) {
                 name
-                events(filter: $eventFilter) {
-                    name
-                    entrants(query: {page: $page}) {
-                        nodes {
-                            participants {
-                                user {
-                                    discriminator
-                                    player {
-                                        gamerTag
-                                    }
+                entrants(query: {page: $page}) {
+                    nodes {
+                        participants {
+                            user {
+                                discriminator
+                                player {
+                                    gamerTag
                                 }
                             }
                         }
@@ -819,32 +817,29 @@ class StartGGClient:
 
         return return_dict
         
-    def query_tournament_user_id(self, game, slug):
+    def query_event_user_id(self, slug):
         page = 1
         players = []
         while page < 100:
             variables = {
-                'slug': slug,
-                'eventFilter': {
-                        'videogameId': [self.game_ids[game]]
-                    },
+                'eventSlug': slug,
                 'page': page
             }
 
-            params = {'query': self.tournament_user_id_query,
+            params = {'query': self.event_user_id_query,
                     'variables': json.dumps(variables)}
             
             return_dict = self.make_request(params)
             
             
             try:
-                if len(return_dict['data']['tournament']['events'][0]['entrants']['nodes']) == 0:
+                if len(return_dict['data']['event']['entrants']['nodes']) == 0:
                     break
             except:
                 print(return_dict)
                 break
             
-            for participant in return_dict['data']['tournament']['events'][0]['entrants']['nodes']:
+            for participant in return_dict['data']['event']['entrants']['nodes']:
                 for p in participant['participants']:
                     player = {}
                     player['gamerTag'] = p['user']['player']['gamerTag']
