@@ -10,7 +10,7 @@ If you don't usually use things like this, please know this token is basically y
 
 ## Usage
 
-The [releases](https://github.com/SeaFresh/FGC-Framework/releases/tag/v1.0) have the more usable tools set up with a gui, and if you don't know anything about python or using a command line, that's where you'll go.
+The [releases](https://github.com/SeaFresh/FGC-Framework/releases) have the more usable tools set up with a gui, and if you don't know anything about python or using a command line, that's where you'll go.
 
 For the rest of you, StartGGClient has all of the queries and data massaging I do to get things working. Sorry, I know it's a lot.
 Everything else is set up as a command line tool with pretty similar options. Many have an @Gooey decorator on their main function. If you find the gui too intrusive, just delete that and you can run it normally. 
