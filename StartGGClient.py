@@ -410,6 +410,20 @@ class StartGGClient:
                 }
             }
         }'''
+
+    user_events_query = '''
+        query UserEventsQuery($slug: String, $game: [ID], $page: Int) {
+            user(slug: $slug) {
+                events(query: {page: $page, perPage: 500, filter: {videogameId: $game}}) {
+                    nodes {
+                        slug
+                        name
+                        numEntrants
+                    }
+                }
+            }
+        }
+        '''
     
     all_seeds_query = '''
         query Seeds($eventSlug: String!, $page: Int!) {
@@ -445,12 +459,12 @@ class StartGGClient:
                 return_dict = json.loads(r.text)
             except json.decoder.JSONDecodeError:
                 print('Decode failed, retrying.')
-
+            sleep(.75)
             if not retries or 'data' in return_dict:
                 break
-
+            
             retries -= 1
-            sleep(.75)
+            
 
         return return_dict
 
@@ -965,3 +979,45 @@ class StartGGClient:
             page += 1
 
         return seeds
+
+    def query_user_placements(self, userId, game):
+        page = 1
+        events = []
+        while page < 100:
+            variables = {
+                'slug': userId,
+                'page': page,
+                'game': self.game_ids[game]
+            }
+
+            params = {'query': self.user_events_query,
+                    'variables': json.dumps(variables)}
+            
+            return_dict = self.make_request(params)
+
+            try:
+                if len(return_dict['data']['user']['events']['nodes']) == 0:
+                    break
+            except:
+                print(return_dict)
+                break
+
+            for event in return_dict['data']['user']['events']['nodes']:
+                events.append((event['slug'], event['name'], event['numEntrants']))
+
+            page += 1
+            
+        return_standings = []
+        for event in events:
+            standings = self.query_standings_by_slug(event[0])
+            for standing in standings:
+                for participants in standing['entrant']['participants']:
+                    try:
+                        if participants['user']['discriminator'] == userId:
+                            return_standings.append({'slug': event[0], 'entrants': event[2], 'placement':standing['placement']})
+                    except:
+                        break
+            
+        return return_standings
+
+            

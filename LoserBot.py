@@ -41,7 +41,7 @@ def main():
     
     winners = sorted(winners.items(), key=lambda item: item[1], reverse=True)
     for entry in winners:
-        print(entry[0] + ' ' + str(entry[1]))
+        print(entry[0] + ' won ' + str(entry[1]) + ' time(s)')
 
     return
 
