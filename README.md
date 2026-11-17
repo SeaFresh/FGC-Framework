@@ -53,6 +53,10 @@ This was something Vinny asked for that I think is a lot of fun. It looks over t
 
 This is just a way to print out the full standings of an event in order.
 
+## Placements
+
+This tool will pull all results for a player in a given game. Can be fairly long running, taking about a second per event. There's probably a better way to do this.
+
 ## Plisno Bot
 
 Plisno has to seed large tournaments with regulars, and likes to have a slightly more human touch with seeding.
@@ -81,6 +85,10 @@ Yet another thing used to pull every set of GGST
 This is what Vinny, Sollemnitas, and other staff use to make posts in the Tourney Hub discord.
 It looks for tournaments with events starting in the next week for a particular game and formats them for posting in Discord.
 Communication in this community is a huge deal to me, it's the reason I made a lot of this stuff because it can be very hard to let people know you're running something. So if you'd like me to add things to, or alter this bot so that you can better inform people about events, let me know.
+
+## Winner Bot
+
+This is the inverse of the loser bot, displaying who you've beaten in the last X months.
 
 ## Contact Me
 

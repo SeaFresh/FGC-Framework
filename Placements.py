@@ -5,7 +5,8 @@ import OutputSetup
 
 @Gooey()
 def main():
-    parser = argparse.ArgumentParser(prog='Placements.py')
+    parser = argparse.ArgumentParser(prog='Placements.py',
+                                     description='Pulls all tournament results for you in a given game.')
     parser.add_argument('--token', required=True,
                         help='Start GG API token')
     parser.add_argument('--game', required=False, choices=list(StartGGClient.dropdown_games.keys()),
